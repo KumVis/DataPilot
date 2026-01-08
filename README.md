@@ -7,3 +7,5 @@ Swagger Docs - http://127.0.0.1:8000/docs
 
 Run Frontend Server(cd frontend) - npm start
 
+Frontend URL - http://localhost:3000
+
