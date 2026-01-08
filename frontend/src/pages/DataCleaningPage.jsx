@@ -1,46 +1,48 @@
-import React, { useState } from "react";
-import { uploadFileForCleaning } from "../api/dataCleaningApi";
+import { useState } from "react";
+import { Card, Typography, CircularProgress } from "@mui/material";
+import FileUpload from "../components/FileUpload";
+import { uploadAndCleanFile } from "../api/dataCleaningApi";
 
-const DataCleaningPage = () => {
-  const [file, setFile] = useState(null);
-  const [message, setMessage] = useState("");
+export default function DataCleaning() {
+  const [loading, setLoading] = useState(false);
+  const [summary, setSummary] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleUpload = async () => {
-    if (!file) {
-      setMessage("Please select a file first");
-      return;
-    }
+  const handleFileUpload = async (file) => {
+    setLoading(true);
+    setError(null);
 
     try {
-      setMessage("Processing...");
-      const response = await uploadFileForCleaning(file);
-      setMessage("File cleaned successfully");
-
-      // optional: download link
-      console.log(response);
-    } catch (error) {
-      setMessage("Error while cleaning file");
+      const response = await uploadAndCleanFile(file);
+      setSummary(response.summary);
+    } catch (err) {
+      setError("Failed to clean data");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h2>Data Cleaning</h2>
+    <Card sx={{ padding: 4, maxWidth: 600, margin: "auto", mt: 5 }}>
+      <Typography variant="h5" gutterBottom>
+        Data Cleaning
+      </Typography>
 
-      <input
-        type="file"
-        onChange={(e) => setFile(e.target.files[0])}
-      />
+      <FileUpload onFileSelect={handleFileUpload} />
 
-      <br /><br />
+      {loading && <CircularProgress sx={{ mt: 2 }} />}
 
-      <button onClick={handleUpload}>
-        Clean File
-      </button>
+      {summary && (
+        <pre style={{ marginTop: 20 }}>
+          {JSON.stringify(summary, null, 2)}
+        </pre>
+      )}
 
-      <p>{message}</p>
-    </div>
+      {error && (
+        <Typography color="error" sx={{ mt: 2 }}>
+          {error}
+        </Typography>
+      )}
+    </Card>
   );
-};
-
-export default DataCleaningPage;
+}
