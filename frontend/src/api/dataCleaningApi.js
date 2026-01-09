@@ -10,11 +10,14 @@ export const uploadAndCleanFile = async (file) => {
     `${BASE_URL}/api/v1/clean`,
     formData,
     {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      responseType: "blob",   // 🔑 important
     }
   );
 
-  return response.data;
+  const summary = response.headers["x-summary"];
+
+  return {
+    blob: response.data,
+    summary: summary ? JSON.parse(summary.replace(/'/g, '"')) : null,
+  };
 };
