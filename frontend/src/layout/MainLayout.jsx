@@ -2,6 +2,7 @@ import { Box, Typography, List, ListItemButton, ListItemText } from "@mui/materi
 import { useNavigate, useLocation } from "react-router-dom";
 
 const menuItems = [
+  { label: "Know Your Data", path: "/profiling" },
   { label: "Data Cleaning", path: "/cleaning" },
   { label: "Data Comparison", path: "/comparison" },
 ];

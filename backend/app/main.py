@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.cleaning import router as cleaning_router
+from app.api.v1.profiling import router as profiling_router
+
 
 app = FastAPI(title="Data Quality Backend")
 
@@ -13,6 +15,7 @@ app.add_middleware(
 )
 
 app.include_router(cleaning_router, prefix="/api/v1")
+app.include_router(profiling_router, prefix="/api/v1")
 
 @app.get("/")
 def health_check():
