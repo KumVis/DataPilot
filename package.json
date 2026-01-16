@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/KumVis/DataPilot/issues"
   },
-  "homepage": "https://github.com/KumVis/DataPilot#readme"
+  "homepage": "https://github.com/KumVis/DataPilot#readme",
+  "dependencies": {
+    "react-router-dom": "^7.12.0"
+  }
 }
