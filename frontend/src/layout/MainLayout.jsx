@@ -1,9 +1,72 @@
-import { Box, Container } from "@mui/material";
+import { Box, Typography, List, ListItemButton, ListItemText } from "@mui/material";
+import { useNavigate, useLocation } from "react-router-dom";
+
+const menuItems = [
+  { label: "Data Cleaning", path: "/cleaning" },
+  { label: "Data Comparison", path: "/comparison" },
+];
 
 export default function MainLayout({ children }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
-    <Box sx={{ backgroundColor: "#f4f6f8", minHeight: "100vh", py: 6 }}>
-      <Container maxWidth="md">{children}</Container>
+    <Box sx={{ display: "flex", minHeight: "100vh", backgroundColor: "#f1f5f9" }}>
+      
+      {/* Sidebar */}
+      <Box
+        sx={{
+          width: 240,
+          backgroundColor: "#ffffff",
+          borderRight: "1px solid #e5e7eb",
+          p: 2,
+        }}
+      >
+        <Typography
+          variant="h6"
+          fontWeight={700}
+          sx={{ mb: 3, color: "#7c3aed" }}
+        >
+          DataPilot
+        </Typography>
+
+        <List>
+          {menuItems.map((item) => (
+            <ListItemButton
+              key={item.path}
+              selected={location.pathname === item.path}
+              onClick={() => navigate(item.path)}
+              sx={{
+                borderRadius: 2,
+                mb: 1,
+                "&.Mui-selected": {
+                  backgroundColor: "#ede9fe",
+                  color: "#7c3aed",
+                },
+              }}
+            >
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          ))}
+        </List>
+      </Box>
+
+      {/* Main Content */}
+      <Box sx={{ flex: 1, p: 4 }}>
+        {children}
+
+        {/* Footer */}
+        <Box
+          sx={{
+            textAlign: "right",
+            mt: 6,
+            color: "text.secondary",
+            fontSize: 13,
+          }}
+        >
+          Developed by Kumar Vishal
+        </Box>
+      </Box>
     </Box>
   );
 }
