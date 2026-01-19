@@ -2,9 +2,10 @@ import { Box, Typography, List, ListItemButton, ListItemText } from "@mui/materi
 import { useNavigate, useLocation } from "react-router-dom";
 
 const menuItems = [
-  { label: "Know Your Data", path: "/profiling" },
+  { label: "Data Profiling", path: "/profiling" },
   { label: "Data Cleaning", path: "/cleaning" },
   { label: "Data Comparison", path: "/comparison" },
+  { label: "Data Visualization", path: "/visualization", comingSoon: true },
 ];
 
 export default function MainLayout({ children }) {
@@ -24,7 +25,7 @@ export default function MainLayout({ children }) {
         }}
       >
         <Typography
-          variant="h6"
+          variant="h4"
           fontWeight={700}
           sx={{ mb: 3, color: "#7c3aed" }}
         >
