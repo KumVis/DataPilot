@@ -8,7 +8,12 @@ export const profileData = async (file) => {
 
   const response = await axios.post(
     `${BASE_URL}/api/v1/profile`,
-    formData
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
 
   return response.data;
