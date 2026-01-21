@@ -5,7 +5,7 @@ const menuItems = [
   { label: "Data Profiling", path: "/profiling" },
   { label: "Data Cleaning", path: "/cleaning" },
   { label: "Data Comparison", path: "/comparison" },
-  { label: "Data Visualization", path: "/visualization", comingSoon: true },
+  { label: "Data Visualization", path: "/visualization" },
 ];
 
 export default function MainLayout({ children }) {
