@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <MainLayout>
         <Routes>
-          <Route path="/" element={<Navigate to="/cleaning" />} />
+          <Route path="/" element={<Navigate to="/profiling" />} />
           <Route path="/cleaning" element={<DataCleaningPage />} />
           <Route path="/comparison" element={<DataComparisonPage />} />
           <Route path="/profiling" element={<KnowYourDataPage />} />
