@@ -6,6 +6,8 @@ import {
   Grid,
   CircularProgress,
   Fade,
+  Stack,
+  Box
 } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -43,17 +45,33 @@ export default function DataCleaningPage() {
   };
 
   return (
-    <Card sx={{ p: 4, boxShadow: 4 }}>
-      <Typography variant="h5" gutterBottom>
-        Data Cleaning
-      </Typography>
+    <Card sx={{
+          pt: 3,   // 🔽 smaller than before
+          px: 2.5,
+          pb: 4,
+          borderRadius: 2,
+          backgroundColor: "#FFFFFF",
+          border: "1px solid #5917c4",
+          
+        }}>
+      <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          mb={3}
+        >
+      <Box>
+        <Typography variant="h5" gutterBottom>
+          Data Cleaning
+        </Typography>
 
-      <Typography color="text.secondary" mb={3}>
-        Upload CSV or Excel to remove duplicates, extra spaces, and special characters.
-      </Typography>
-
+        <Typography color="text.secondary" mb={3}>
+          Upload CSV or Excel to remove duplicates, extra spaces, and special characters.
+        </Typography>
+      </Box>
       {/* Upload */}
       <FileUpload onFileSelect={handleUpload} />
+      </Stack>
 
       {/* Loading */}
       {loading && (
