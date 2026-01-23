@@ -118,56 +118,62 @@ export default function DataComparisonPage() {
 
     return (
       <Box mt={2}>
-        {records.map((row, idx) => (
-          <Card
-            key={idx}
-            sx={{
-              mb: 3,
-              p: 2,
-              borderLeft: "4px solid #7c3aed",
-              backgroundColor: "#faf5ff",
-            }}
-          >
-            <Typography fontWeight={600} mb={1}>
-              Primary Key: {row.primary_key}
-            </Typography>
+          {records.map((row, idx) => (
+            <Card
+                key={idx}
+                sx={{
+                  mb: 3,
+                  p: 2,
+                  borderLeft: "4px solid #7c3aed",
+                  backgroundColor: "#faf5ff",
+                }}
+              >
+                <Typography fontWeight={600} mb={1}>
+                  Primary Key: {row.primary_key}
+                </Typography>
 
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
-              <thead>
-                <tr>
-                  <th style={{ textAlign: "left", padding: 8 }}>Column</th>
-                  <th style={{ textAlign: "left", padding: 8 }}>Old Value</th>
-                  <th style={{ textAlign: "left", padding: 8 }}>New Value</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {Object.entries(row.changes).map(
-                  ([col, diff]) => (
-                    <tr key={col}>
-                      <td style={{ padding: 8 }}>{col}</td>
-                      <td style={{ padding: 8, color: "#dc2626" }}>
-                        {String(diff.old)}
-                      </td>
-                      <td style={{ padding: 8, color: "#16a34a" }}>
-                        {String(diff.new)}
-                      </td>
+                <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                  <thead>
+                    <tr>
+                      <th style={{ textAlign: "left", padding: 8 }}>Column</th>
+                      <th style={{ textAlign: "left", padding: 8 }}>Old Value</th>
+                      <th style={{ textAlign: "left", padding: 8 }}>New Value</th>
                     </tr>
-                  )
-                )}
-              </tbody>
-            </table>
-          </Card>
-        ))}
+                  </thead>
+
+                  <tbody>
+                    {Object.entries(row.changes).map(
+                      ([col, diff]) => (
+                        <tr key={col}>
+                          <td style={{ padding: 8 }}>{col}</td>
+                          <td style={{ padding: 8, color: "#dc2626" }}>
+                            {String(diff.old)}
+                          </td>
+                          <td style={{ padding: 8, color: "#16a34a" }}>
+                            {String(diff.new)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+            </Card>
+          ))}
       </Box>
+
     );
   };
 
-
-  
-
   return (
-    <Card sx={{ p: 4 }}>
+    <Card sx={{
+          pt: 3,   // 🔽 smaller than before
+          px: 2.5,
+          pb: 4,
+          borderRadius: 2,
+          backgroundColor: "#FFFFFF",
+          border: "1px solid #5917c4",
+          
+        }}>
 
       {/* ---------- HEADER ---------- */}
       <Typography variant="h5" gutterBottom>
@@ -199,6 +205,7 @@ export default function DataComparisonPage() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            border: "1px solid #5917c4",
           }}
         >
           <Typography fontWeight={600}>File A</Typography>
@@ -247,6 +254,7 @@ export default function DataComparisonPage() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            border: "1px solid #5917c4",
           }}
         >
           <Typography fontWeight={600}>File B</Typography>
@@ -297,12 +305,13 @@ export default function DataComparisonPage() {
       variant="outlined"
       sx={{
         p: 3,
-        height: 190,
+        height: 180,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#fafafa",
+        border: "1px solid #5917c4",
       }}
     >
       <Button

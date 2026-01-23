@@ -9,6 +9,8 @@ import {
   TableCell,
   TableBody,
   Button,
+  Box,
+  Stack
 } from "@mui/material";
 
 import FileUpload from "../components/FileUpload";
@@ -138,186 +140,213 @@ export default function KnowYourDataPage() {
   };
 
   return (
-    <Card sx={{ p: 4 }}>
-      <Typography variant="h5">Know Your Data</Typography>
-      <Typography color="text.secondary" mb={3}>
-        Upload CSV or Excel to understand structure and data quality.
-      </Typography>
+    <Box>
+      {/* ===== HEADER (Title + Upload) ===== */}
 
-      <FileUpload onFileSelect={handleUpload} />
+      <Card
+        sx={{
+          pt: 3,   // 🔽 smaller than before
+          px: 2.5,
+          pb: 4,
+          borderRadius: 2,
+          backgroundColor: "#FFFFFF",
+          border: "1px solid #5917c4",
+          
+        }}
+      >
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          mb={3}
+        >
+          <Box>
+            <Typography variant="h5" gutterBottom>
+              Know Your Data
+            </Typography>
+            <Typography color="text.secondary" mb={3}>
+              Upload CSV or Excel to understand structure and data quality.
+            </Typography>
+          </Box>
 
-      {data && (
-        <>
-          {/* ---------- KPI Cards ---------- */}
-          <Grid container spacing={2} mt={4}>
-            <Grid item xs={12} sm={3}>
-              <Card
-                onClick={() => setActiveView("rows")}
-                sx={{
-                    cursor: "pointer",
-                    p: 2,
-                    textAlign: "center",
-                    border:
-                    activeView === "rows" ? `2px solid ${VIOLET}` : "1px solid #e0e0e0",
-                    backgroundColor:
-                    activeView === "rows" ? "#F3EEFF" : "white",
-                    transition: "all 0.2s ease",
-                }}
-                >
-                <Typography
-                    color={activeView === "rows" ? VIOLET : "text.secondary"}
-                >
-                    Rows
-                </Typography>
-                <Typography
-                    variant="h6"
-                    sx={{ color: activeView === "rows" ? VIOLET : "inherit" }}
-                >
-                    {data.rows}
-                </Typography>
-                </Card>
+          {/* Upload aligned like Data Visualization */}
+          <FileUpload onFileSelect={handleUpload} />
+        </Stack>
+      
 
+        {data && (
+          <>
+            {/* ---------- KPI Cards ---------- */}
+            <Grid container spacing={2} mt={4}>
+              <Grid item xs={12} sm={3}>
+                <Card
+                  onClick={() => setActiveView("rows")}
+                  sx={{
+                      cursor: "pointer",
+                      p: 2,
+                      textAlign: "center",
+                      border:
+                      activeView === "rows" ? `2px solid ${VIOLET}` : "1px solid #e0e0e0",
+                      backgroundColor:
+                      activeView === "rows" ? "#F3EEFF" : "white",
+                      transition: "all 0.2s ease",
+                  }}
+                  >
+                  <Typography
+                      color={activeView === "rows" ? VIOLET : "text.secondary"}
+                  >
+                      Rows
+                  </Typography>
+                  <Typography
+                      variant="h6"
+                      sx={{ color: activeView === "rows" ? VIOLET : "inherit" }}
+                  >
+                      {data.rows}
+                  </Typography>
+                  </Card>
+
+              </Grid>
+
+              <Grid item xs={12} sm={3}>
+                <Card
+                  onClick={() => setActiveView("columns")}
+                  sx={{
+                      cursor: "pointer",
+                      p: 2,
+                      textAlign: "center",
+                      border:
+                      activeView === "columns" ? `2px solid ${VIOLET}` : "1px solid #e0e0e0",
+                      backgroundColor:
+                      activeView === "columns" ? "#F3EEFF" : "white",
+                      transition: "all 0.2s ease",
+                  }}
+                  >
+                  <Typography
+                      color={activeView === "columns" ? VIOLET : "text.secondary"}
+                  >
+                      Columns
+                  </Typography>
+                  <Typography
+                      variant="h6"
+                      sx={{ color: activeView === "columns" ? VIOLET : "inherit" }}
+                  >
+                      {data.columns}
+                  </Typography>
+                  </Card>
+
+              </Grid>
+
+              <Grid item xs={12} sm={3}>
+                <Card
+                  onClick={() => setActiveView("duplicates")}
+                  sx={{
+                      cursor: "pointer",
+                      p: 2,
+                      textAlign: "center",
+                      border:
+                      activeView === "duplicates"
+                          ? `2px solid ${VIOLET}`
+                          : "1px solid #e0e0e0",
+                      backgroundColor:
+                      activeView === "duplicates" ? "#F3EEFF" : "white",
+                      transition: "all 0.2s ease",
+                      "&:hover": {
+                      boxShadow: 6,
+                      transform: "translateY(-2px)",
+                      },
+                  }}
+                  >
+                  <Typography
+                      sx={{
+                      color:
+                          activeView === "duplicates" ? VIOLET : "text.secondary",
+                      fontWeight: 500,
+                      }}
+                  >
+                      Duplicates %
+                  </Typography>
+
+                  <Typography
+                      variant="h6"
+                      sx={{
+                      color: activeView === "duplicates" ? VIOLET : "inherit",
+                      fontWeight: 600,
+                      }}
+                  >
+                      {data.duplicate_percent}%
+                  </Typography>
+                  </Card>
+
+              </Grid>
+
+              <Grid item xs={12} sm={3}>
+                <Card
+                  onClick={() => setActiveView("nulls")}
+                  sx={{
+                      cursor: "pointer",
+                      p: 2,
+                      textAlign: "center",
+                      border:
+                      activeView === "nulls"
+                          ? `2px solid ${VIOLET}`
+                          : "1px solid #e0e0e0",
+                      backgroundColor:
+                      activeView === "nulls" ? "#F3EEFF" : "white",
+                      transition: "all 0.2s ease",
+                      "&:hover": {
+                      boxShadow: 6,
+                      transform: "translateY(-2px)",
+                      },
+                  }}
+                  >
+                  <Typography
+                      sx={{
+                      color:
+                          activeView === "nulls" ? VIOLET : "text.secondary",
+                      fontWeight: 500,
+                      }}
+                  >
+                      Null Cells %
+                  </Typography>
+
+                  <Typography
+                      variant="h6"
+                      sx={{
+                      color: activeView === "nulls" ? VIOLET : "inherit",
+                      fontWeight: 600,
+                      }}
+                  >
+                      {data.null_cell_percent}%
+                  </Typography>
+                  </Card>
+
+              </Grid>
             </Grid>
 
-            <Grid item xs={12} sm={3}>
-              <Card
-                onClick={() => setActiveView("columns")}
-                sx={{
-                    cursor: "pointer",
-                    p: 2,
-                    textAlign: "center",
-                    border:
-                    activeView === "columns" ? `2px solid ${VIOLET}` : "1px solid #e0e0e0",
-                    backgroundColor:
-                    activeView === "columns" ? "#F3EEFF" : "white",
-                    transition: "all 0.2s ease",
-                }}
-                >
-                <Typography
-                    color={activeView === "columns" ? VIOLET : "text.secondary"}
-                >
-                    Columns
-                </Typography>
-                <Typography
-                    variant="h6"
-                    sx={{ color: activeView === "columns" ? VIOLET : "inherit" }}
-                >
-                    {data.columns}
-                </Typography>
-                </Card>
+            {/* ---------- Dynamic Drill-down View ---------- */}
+            {renderTable()}
 
-            </Grid>
-
-            <Grid item xs={12} sm={3}>
-              <Card
-                onClick={() => setActiveView("duplicates")}
-                sx={{
-                    cursor: "pointer",
-                    p: 2,
-                    textAlign: "center",
-                    border:
-                    activeView === "duplicates"
-                        ? `2px solid ${VIOLET}`
-                        : "1px solid #e0e0e0",
-                    backgroundColor:
-                    activeView === "duplicates" ? "#F3EEFF" : "white",
-                    transition: "all 0.2s ease",
-                    "&:hover": {
-                    boxShadow: 6,
-                    transform: "translateY(-2px)",
-                    },
-                }}
-                >
-                <Typography
-                    sx={{
-                    color:
-                        activeView === "duplicates" ? VIOLET : "text.secondary",
-                    fontWeight: 500,
-                    }}
-                >
-                    Duplicates %
-                </Typography>
-
-                <Typography
-                    variant="h6"
-                    sx={{
-                    color: activeView === "duplicates" ? VIOLET : "inherit",
-                    fontWeight: 600,
-                    }}
-                >
-                    {data.duplicate_percent}%
-                </Typography>
-                </Card>
-
-            </Grid>
-
-            <Grid item xs={12} sm={3}>
-              <Card
-                onClick={() => setActiveView("nulls")}
-                sx={{
-                    cursor: "pointer",
-                    p: 2,
-                    textAlign: "center",
-                    border:
-                    activeView === "nulls"
-                        ? `2px solid ${VIOLET}`
-                        : "1px solid #e0e0e0",
-                    backgroundColor:
-                    activeView === "nulls" ? "#F3EEFF" : "white",
-                    transition: "all 0.2s ease",
-                    "&:hover": {
-                    boxShadow: 6,
-                    transform: "translateY(-2px)",
-                    },
-                }}
-                >
-                <Typography
-                    sx={{
-                    color:
-                        activeView === "nulls" ? VIOLET : "text.secondary",
-                    fontWeight: 500,
-                    }}
-                >
-                    Null Cells %
-                </Typography>
-
-                <Typography
-                    variant="h6"
-                    sx={{
-                    color: activeView === "nulls" ? VIOLET : "inherit",
-                    fontWeight: 600,
-                    }}
-                >
-                    {data.null_cell_percent}%
-                </Typography>
-                </Card>
-
-            </Grid>
-          </Grid>
-
-          {/* ---------- Dynamic Drill-down View ---------- */}
-          {renderTable()}
-
-          {/* ---------- Export ---------- */}
-          <Button
-            variant="outlined"
-            sx={{ mt: 3 }}
-            onClick={() => {
-              const blob = new Blob(
-                [JSON.stringify(data, null, 2)],
-                { type: "application/json" }
-              );
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement("a");
-              a.href = url;
-              a.download = "data_profile.json";
-              a.click();
-            }}
-          >
-            Export Profiling Report
-          </Button>
-        </>
-      )}
-    </Card>
+            {/* ---------- Export ---------- */}
+            <Button
+              variant="outlined"
+              sx={{ mt: 3 }}
+              onClick={() => {
+                const blob = new Blob(
+                  [JSON.stringify(data, null, 2)],
+                  { type: "application/json" }
+                );
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "data_profile.json";
+                a.click();
+              }}
+            >
+              Export Profiling Report
+            </Button>
+          </>
+        )}
+      </Card>
+    </Box>
   );
 }

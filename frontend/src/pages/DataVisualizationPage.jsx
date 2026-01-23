@@ -76,13 +76,15 @@ export default function DataVisualizationPage() {
       <Box
         sx={{
           minHeight: "80vh",
+          borderRadius: 2,
           background: `
             linear-gradient(
               180deg,
-              #cfcff37b 0%,
-              #d8d8ea 0%
+              #ffffffe0 0%,
+              #ffffffe0 0%
             )
           `,
+          border: "1px solid #5917c4",
           p: 3,
         }}
       >
@@ -94,7 +96,7 @@ export default function DataVisualizationPage() {
         mb={3}
       >
         <Box>
-          <Typography variant="h5" fontWeight={700}>
+          <Typography variant="h5" gutterBottom>
             Data Visualization
           </Typography>
           <Typography color="text.secondary">
@@ -118,15 +120,18 @@ export default function DataVisualizationPage() {
           sx={{
             width: 300,
             flexShrink: 0,
+            
           }}
-        >
+        > 
           <Stack spacing={14}>
+            <Card variant="outlined" sx={{border: "1px solid #5917c4",}}>
             <ChartTypePanel
               selected={chartType}
               onSelect={setChartType}
             />
+             </Card>
 
-            <Card variant="outlined" sx={{ p: 3 }}>
+            <Card variant="outlined" sx={{ p: 3 ,border: "1px solid #5917c4",}}>
               <Typography fontWeight={600} mb={2}>
                 Axis Mapping
               </Typography>
@@ -175,7 +180,7 @@ export default function DataVisualizationPage() {
             minWidth: 0,
           }}
         >
-          <Card variant="outlined" sx={{ p: 3 }}>
+          <Card variant="outlined" sx={{ p: 3,border: "1px solid #5917c4", }}>
             <Typography fontWeight={600} mb={2}>
               Chart Preview
             </Typography>
